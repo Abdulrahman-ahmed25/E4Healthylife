@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block style%}
+    .endFooter{
+        position:absolute !important;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        }
+{%endblock%}
+<script>
+    {%block jquery%}
+    $(".item-qty").change(function(){
+        $(this).next(".btn-update").fadeIn();
+    });
+    {%endblock%}
+</script>
+{%block content%}
+<div class="container">
+    <table class="table table-hover">
+        <tr class="text-uppercase">
+            <th class="text-start">Meals</th>
+            <th>Categories</th>
+            <th>quantities</th>
+            <th ></th>
+          </tr>
+        
+        {% for item in object.cartitem_set.all %}
+
+        <tr>
+            <form method="GET">
+                <input type="hidden" name="item" value="{{item.item.id}}" />
+                <td class="text-start">{{item.get_title}}</td>
+                <td class="text-start">{{item.get_mealList}}</td>
+                <td><input type="number" name="qty" value="{{item.quantity}}" class="item-qty" style="background-color:#f8f9fa; border: 1px solid gray;"/><input type="submit" value="Update item" class="btn-update btn btn-link" style="display: none;"/></td>
+                <td class="text-end text-uppercase" style="font-weight: bold;"><a class="text-danger" href="{{item.remove}}">x</a></td>
+                
+            </form>
+        </tr>
+        {%endfor%}
+        <tr>
+            {% comment %} <td colspan="4" class="text-end">Subtotal: {{object.subtotal}} EGP</td> {% endcomment %}
+        </tr>
+    </table>
+
+</div>
+{%endblock%}

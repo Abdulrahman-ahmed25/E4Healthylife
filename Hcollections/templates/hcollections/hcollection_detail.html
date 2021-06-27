@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+    <!-- <h1 style="background-color: rgba(0, 170, 0, 0.603); text-align: center; color: #fff;">welcome to E4Sports </h1> -->
+    <div class="row">
+    <ul class="list-group list-group-flush" >
+        <li class="list-group-item"><img src="{{hcollection.hcollection_image.url}}" class="img-fluid"></li>
+        <li class="list-group-item">title: <span style="color:green">{{hcollection.title}}</span></li>
+        <li class="list-group-item">available days in month: <span style="color:green">{{hcollection.available_days}}</span></li>
+        <li class="list-group-item">price: <span style="color:green">{{hcollection.price}}</span> / month </li>
+        <li class="list-group-item">category: <span style="color:green">{{hcollection.category}}</span></li>
+        <li class="list-group-item">details: <span style="color:green">{{hcollection.description}}</span</li>
+    </ul>
+        <form method="POST">{% csrf_token %}
+        {{form.as_p}}
+        <input type='submit' value='Submit' class="btn btn-success" style="text-transform: uppercase;"/>
+        </form>
+    <div class="row">
+        <h3>you should select your meals from here</h3>
+        {% for object in list_meals%}
+        <div class="col-6 col-md-3 text-center img-thumbnail" style=" border: 10px solid #e9ebee;">
+        <div style="padding: 10px; ">
+        <a href="{{object.get_absolute_url}}" class="">
+           <h5>{{object.title}}</h5>
+        </a>
+        </div>
+        </div>
+        {% endfor %} 
+        </div>
+    </div>
+</div>
+{%endblock%}

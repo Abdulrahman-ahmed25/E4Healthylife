@@ -1,0 +1,37 @@
+.navbar{
+    margin-bottom: 20px;
+    background-color: orange;
+    
+}
+.navbar-light .navbar-nav .nav-link{
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+
+.navbar-light .navbar-nav .nav-link span{
+    color: #000;
+
+
+}
+.navbar-brand span:first-child{
+    color: #fff;
+    text-transform: uppercase;
+
+}
+
+.navbar-brand span{
+    font-size: 28px;
+    color:black;
+    font-weight: bold;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* start product_details.html*/
+
+/* end product_details.html*/

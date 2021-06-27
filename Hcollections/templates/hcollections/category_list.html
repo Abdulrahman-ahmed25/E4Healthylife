@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+{% block style%}
+a{
+    text-decoration: none;
+    color: black;
+}
+{%endblock%}
+{% block content %}
+
+<div class="container" style="background-color: #e9ebee; margin-bottom: 16px;">
+    <div class="row">
+        {% for object in object_list%}
+        <div class="col-6 col-md-4 text-center img-thumbnail" style=" border: 10px solid #e9ebee;">
+        <div style="padding: 10px; ">
+        <a href="{{object.get_absolute_url}}" class="">
+           <h5>{{object.title}}</h5>
+           {%if object.image %}
+            <img class="img-fluid " src="{{object.image.url}}" alt="{{object.title}}">
+            {%endif%}
+            <p>{{object.description}}</p>
+        </a>
+        </div>
+        </div>
+        {% endfor %}
+        
+
+    </div>
+
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block style%}
+
+span{
+
+}
+small{
+    color:red;
+    text-decoration:line-through;
+    font-size:16px
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+{%endblock%}
+{%block content%}
+    <div class="container">
+        <h3>{{object}}</h3>
+        <div class="container" style="background-color: #e9ebee;">
+            <div class="row">
+                {% for object in meals%}
+                {%if object.is_active%}
+                <div class="col-6 col-md-6 col-lg-4 text-center img-thumbnail" style=" border: 10px solid #e9ebee;">
+                    <div style="padding: 10px; margin: 20px">
+                    <a href="{{object.get_absolute_url}}" class="product-card related-a">
+                        <img style="width: 160px;height: 160px;object-fit: scale-down;" 
+                        class="img-fluid " src="{{object.meal_image.url}}" alt="{{object.title}}">
+                    <h6 style="white-space: nowrap; width: auto; overflow: hidden;text-overflow: ellipsis;padding-bottom: 10px"">
+                        {{object.title}}
+                    </h6>
+                    </a>
+                    </div>
+                </div>
+                {%endif%}
+                {% endfor %}
+        
+            </div>
+            <div class="row">
+            <form method="GET" action="{% url 'cart' %}">
+            <select name="item" class="form-select" multiple aria-label="multiple select example">
+            {% for object in meals%}
+            {%if object.is_active%}
+            <option value="{{object.id}}">
+                    {{object.title}}
+            </option>
+                {%endif%}
+                {% endfor %}
+        
+            </select>
+            <input type='submit' value='Add To Card' class="btn btn-success" style="text-transform: uppercase;"/>
+         </form>
+        </div>
+    </div>
+{%endblock%}

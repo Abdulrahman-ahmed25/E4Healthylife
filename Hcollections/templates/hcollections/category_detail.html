@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block style%}
+
+span{
+
+}
+small{
+    color:red;
+    text-decoration:line-through;
+    font-size:16px
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+{%endblock%}
+{%block content%}
+    <div class="container">
+        <h3>{{object}}</h3>
+        <div class="container" style="background-color: #e9ebee;">
+            <div class="row">
+                {% for object in hcollections%}
+                <div class="col-6 col-md-3 col-lg-2 text-center img-thumbnail" style=" border: 10px solid #e9ebee;">
+                    <div style="padding: 10px; ">
+                    <a href="{{object.get_absolute_url}}" class="product-card related-a">
+                        <img style="width: 160px;height: 160px;object-fit: scale-down;" 
+                        class="img-fluid " src="{{object.hcollection_image.url}}" alt="{{object.title}}">
+                    <h6 style="white-space: nowrap; width: auto; overflow: hidden;text-overflow: ellipsis;">
+                        {{object.title}}
+                    </h6>
+                    </a>
+                    </div>
+                </div>
+                {% endfor %}
+        
+            </div>
+        
+        
+        </div>
+    </div>
+{%endblock%}
